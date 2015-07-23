@@ -9,7 +9,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v7.widget.Toolbar;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import david.attandenceapp.R;
+import david.attandenceapp.models.DrawerItem;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -21,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout Drawer;
     private RecyclerView.Adapter mAdapter;
     private ActionBarDrawerToggle mDrawerToggle;
+    private List<DrawerItem> navigationItemsList;
 
     public String HEADER_NAME = "David Epshtein";
     public String HEADER_SEC = "(^_^)";
@@ -34,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
 
         mToolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
+
+        navigationItemsList = new ArrayList<DrawerItem>();
     }
 
     @Override
@@ -56,5 +63,13 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void addItemsToNavigationList(){
+        navigationItemsList.add(new DrawerItem(getString(R.string.attendance_list), R.drawable.ic_attendance));
+        navigationItemsList.add(new DrawerItem("Events List", R.drawable.ic_events));
+        navigationItemsList.add(new DrawerItem("Register", R.drawable.ic_register));
+        navigationItemsList.add(new DrawerItem("Add Events", R.drawable.ic_events));
+        navigationItemsList.add(new DrawerItem("Settings", R.drawable.ic_settings));
     }
 }
