@@ -4,15 +4,18 @@ import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import david.attandenceapp.R;
+import david.attandenceapp.adapters.navDrawerAdapter;
 import david.attandenceapp.models.DrawerItem;
 
 
@@ -27,6 +30,10 @@ public class MainActivity extends AppCompatActivity {
     private ActionBarDrawerToggle mDrawerToggle;
     private List<DrawerItem> navigationItemsList;
 
+    public String HEADER_NAME = "David Epshtein";
+    public String HEADER_EMAIL = "(^_^)";
+    public int HEADER_IMAGE = R.drawable.stewie;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +44,29 @@ public class MainActivity extends AppCompatActivity {
 
         navigationItemsList = new ArrayList<DrawerItem>();
         addItemsToNavigationList();
+
+        mRecyclerView = (RecyclerView) findViewById(R.id.RecyclerView);
+        mRecyclerView.setHasFixedSize(true);
+
+        mAdapter = new navDrawerAdapter(navigationItemsList, this, HEADER_NAME, HEADER_EMAIL, HEADER_IMAGE);
+        mRecyclerView.setAdapter(mAdapter);
+
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        Drawer = (DrawerLayout) findViewById(R.id.DrawerLayout);
+        mDrawerToggle = new ActionBarDrawerToggle(this, Drawer, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+            }
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                super.onDrawerClosed(drawerView);
+            }
+        };
+        Drawer.setDrawerListener(mDrawerToggle);
+        mDrawerToggle.syncState();
     }
 
     @Override
