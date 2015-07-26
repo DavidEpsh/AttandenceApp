@@ -1,5 +1,6 @@
 package david.attandenceapp.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
@@ -47,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
     private final static int ADD_EVENT_FRAGMENT = 4;
     private final static int SETTINGS_FRAGMENT = 5;
 
+    private int currentFragment = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,13 +80,11 @@ public class MainActivity extends AppCompatActivity {
 
                 if (child != null && mGestureDetector.onTouchEvent(motionEvent)) {
                     Drawer.closeDrawers();
-
+                    onTouchDrawer(recyclerView.getChildLayoutPosition(child));
                     return true;
                 }
-
                 return false;
             }
-
 
             @Override
             public void onTouchEvent(RecyclerView rv, MotionEvent e) {
@@ -96,7 +97,6 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
-
 
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
@@ -114,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
         };
         Drawer.setDrawerListener(mDrawerToggle);
         mDrawerToggle.syncState();
+        onTouchDrawer(currentFragment);
     }
 
     @Override
@@ -147,29 +148,41 @@ public class MainActivity extends AppCompatActivity {
 
     private void onTouchDrawer(final int position){
 
+        currentFragment = position;
+
         switch(position){
             case ATTENDANCE_LIST_FRAGMENT:
                 openFragment(new AttendanceListFragment());
+                setTitle(getString(R.string.attendance_list));
                 break;
             case EVENTS_LIST_FRAGMENT:
                 openFragment(new EventsListFragment());
+                setTitle(getString(R.string.events_list));
                 break;
             case ADD_ATTENDANT_FRAGMENT:
                 openFragment(new AddAttendantFragment());
+                setTitle(getString(R.string.add_attendant));
                 break;
             case ADD_EVENT_FRAGMENT:
                 openFragment(new AddEventFragment());
+                setTitle(getString(R.string.add_event));
                 break;
             case SETTINGS_FRAGMENT:
+                startActivity(new Intent(this, PreferenceActivity.class));
+                break;
                 //todo;
             default:
                 return;
         }
     }
 
+    private void setTitle(String title){
+        getSupportActionBar().setTitle(title);
+    }
+
     private void addItemsToNavigationList(){
         navigationItemsList.add(new DrawerItem(getString(R.string.attendance_list), R.drawable.ic_attendance));
-        navigationItemsList.add(new DrawerItem(getString(R.string.events_list), R.drawable.ic_add_event));
+        navigationItemsList.add(new DrawerItem(getString(R.string.events_list), R.drawable.ic_events));
         navigationItemsList.add(new DrawerItem(getString(R.string.add_attendant), R.drawable.ic_register));
         navigationItemsList.add(new DrawerItem(getString(R.string.add_event), R.drawable.ic_add_event));
         navigationItemsList.add(new DrawerItem(getString(R.string.settings), R.drawable.ic_settings));
