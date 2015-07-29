@@ -6,10 +6,10 @@
         android:id="@+id/relative_layout_add_attendant"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="0dp"
         android:paddingLeft="20dp"
-        android:paddingTop="5dp"
+        android:paddingTop="10dp"
         android:paddingRight="20dp"
         android:paddingBottom="5dp">
         <RelativeLayout
@@ -38,45 +38,82 @@
         </RelativeLayout>
         <EditText
             android:id="@+id/edit_text_attendant_name"
-            android:layout_below="@+id/relative_layout_attendant_image"
-            style="@style/AddAttendantForm"
             android:hint="@string/hint_guest_name"
+            android:layout_below="@+id/relative_layout_attendant_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:layout_marginBottom="-5dp"
+            android:layout_alignParentLeft="true"
+            android:gravity="center_vertical"
             android:imeOptions="actionNext" />
         <EditText
             android:id="@+id/edit_text_attendant_email"
-            style="@style/AddAttendantForm"
+            android:layout_marginBottom="-5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:layout_alignParentLeft="true"
+            android:gravity="center_vertical"
             android:layout_below="@+id/edit_text_attendant_name"
             android:hint="@string/hint_guest_email"
             android:imeOptions="actionNext"
             android:inputType="textEmailAddress"/>
         <EditText
             android:id="@+id/edit_text_attendant_phone"
-            style="@style/AddAttendantForm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:layout_marginBottom="-5dp"
+            android:layout_alignParentLeft="true"
+            android:gravity="center_vertical"
             android:layout_below="@+id/edit_text_attendant_email"
             android:hint="@string/hint_guest_phone"
             android:imeOptions="actionNext"
             android:inputType="phone"/>
+
         <EditText
             android:id="@+id/edit_text_attendant_street_address"
-            style="@style/AddAttendantForm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:layout_marginBottom="-5dp"
+            android:layout_alignParentLeft="true"
+            android:gravity="center_vertical"
             android:hint="@string/hint_guest_street_address"
             android:layout_below="@+id/edit_text_attendant_phone"
             android:imeOptions="actionNext" />
+
         <EditText
             android:id="@+id/edit_text_attendant_city"
-            style="@style/AddAttendantForm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:layout_marginBottom="-5dp"
+            android:layout_alignParentLeft="true"
+            android:gravity="center_vertical"
             android:layout_below="@+id/edit_text_attendant_street_address"
             android:hint="@string/hint_guest_city"
             android:imeOptions="actionNext" />
         <EditText
             android:id="@+id/edit_text_attendant_state"
-            style="@style/AddAttendantForm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:layout_marginBottom="-5dp"
+            android:layout_alignParentLeft="true"
+            android:gravity="center_vertical"
             android:layout_below="@+id/edit_text_attendant_city"
             android:hint="@string/state"
             android:imeOptions="actionNext" />
+
         <EditText
             android:id="@+id/edit_text_attendant_zip_code"
-            style="@style/AddAttendantForm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:layout_alignParentLeft="true"
+            android:gravity="center_vertical"
             android:layout_below="@+id/edit_text_attendant_state"
             android:hint="@string/hint_zip_code"
             android:imeOptions="actionNext" />
