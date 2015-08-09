@@ -24,7 +24,9 @@ public class AddEventFragment extends Fragment {
     private EditText mOrganizerName;
     private Calendar mEventDate;
     private Button mSaveButton;
+    private Button mDatePicker;
 
+    private View mRootView;
 
     public AddEventFragment() {
         // Required empty public constructor
@@ -35,7 +37,13 @@ public class AddEventFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_event, container, false);
+        mRootView =  inflater.inflate(R.layout.fragment_add_event, container, false);
+
+        initViews();
+        return mRootView;
+    }
+
+    private void initViews() {
     }
 
 }
